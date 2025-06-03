@@ -17,7 +17,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true  # 建议设为 true，避免多次推送冲突
 
 jobs:
   build:
@@ -37,10 +37,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v2  # 建议写成 v2.4.0 之类的具体版本
         name: Install pnpm
         with:
-          version: latest
+          version: 8.14.0  # 推荐指定一个稳定版本
           run_install: false
 
       - name: Install dependencies
@@ -54,7 +54,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./.vitepress/dist  # 明确指定 VitePress 构建输出目录
+          path: ./.vitepress/dist
 
   deploy:
     environment:
