@@ -54,7 +54,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./.vitepress/dist  # 指定 VitePress 构建输出目录
+          path: ./.vitepress/dist  # 明确指定 VitePress 构建输出目录
 
   deploy:
     environment:
